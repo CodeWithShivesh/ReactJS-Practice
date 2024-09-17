@@ -1,0 +1,1 @@
+This React - Redux project using redux toolkit(I cannot change the name due to company policy)
