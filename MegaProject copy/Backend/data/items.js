@@ -5,7 +5,7 @@ async function getStoredItems() {
   const data = JSON.parse(rawFileContent);
   const storedItems = data.items ?? [];
   return storedItems;
-}
+} 
 
 function storeItems(items) {
   return fs.writeFile('items.json', JSON.stringify({ items: items || [] }));
