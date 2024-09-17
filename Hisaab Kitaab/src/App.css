@@ -1,0 +1,22 @@
+.Box{
+    text-align: center;
+    border: 2px solid black;
+    margin: 15px;
+    /* max-width: 50%; */
+    min-width: 250px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .mainbox{
+    display: flex;
+  }
+
+  .side{
+    max-width: 20%;
+    height: 525px;
+  }
+
+  .content{
+    width: 80%;
+  }

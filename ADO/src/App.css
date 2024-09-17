@@ -1,0 +1,55 @@
+.button{margin: 7px;
+  padding-top: 3px;
+  height: 35px;
+}
+
+.Box{
+  text-align: center;
+  border: 2px solid black;
+  margin: 15px;
+  /* max-width: 50%; */
+  min-width: 250px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.Boxx{
+  display: flex;
+}
+.Box1{
+  float: left;
+  width: 50%;
+}
+.Box2{
+  float: right;
+  width: 50%;
+}
+
+.validations{
+  padding: 10px;
+}
+
+.chbx{
+  margin: 10px;
+}
+
+.label{
+  font-weight: 700;
+  margin: 7px 15px 0px 15px;
+}
+
+.options{
+  display: flex;
+  flex-direction: column;
+}
+
+.link{
+  text-decoration: none !important;
+  color: black;
+  font-weight: 600;
+}
+
+.header-link{
+  text-decoration: none !important;
+  color: white;
+}
