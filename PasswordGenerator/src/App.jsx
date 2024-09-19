@@ -25,9 +25,7 @@ function App() {
   }, [length, numberAllowed, charAllowed, setPassword]);
 
   //for copy button      <MdFileDownloadDone />
-  let copied = false;
   const copyPasswordToClipboard = useCallback(() => {
-    copied = true;
     passwordValue.current?.select();
     passwordValue.current?.select();
     passwordValue.current?.setSelectionRange(0, 99);
@@ -55,7 +53,7 @@ function App() {
           className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0"
           onClick={copyPasswordToClipboard}
         >
-          {copied ? <MdFileDownloadDone /> : <FaRegCopy />}
+          <FaRegCopy />
         </button>
       </div>
       <div className="flex text-sm gap-x-2">
