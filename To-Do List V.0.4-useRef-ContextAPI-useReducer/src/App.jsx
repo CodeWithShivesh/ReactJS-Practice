@@ -22,7 +22,6 @@ const todoItemReducer = (initialState, Action) => {
 };
 
 function App() {
-  
   const [todoItems, dispatchTodoItems] = useReducer(todoItemReducer, []);
 
   const addNewItem = (todoItem, todoDate) => {
@@ -63,6 +62,5 @@ function App() {
     </TodoItemsContext.Provider>
   );
 }
-
 
 export default App;
