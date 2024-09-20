@@ -3,19 +3,19 @@ import { useLoaderData, useParams } from "react-router-dom";
 
 export default function Github() {
   const { userName } = useParams();
-  const data = useLoaderData();
+  // const data = useLoaderData();
 
   //instead of this we are using loader in routes
 
-  //   const [data, setData] = useState([]);
-  //   useEffect(() => {
-  //     fetch(`https://api.github.com/users/${userName}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         setData(data);
-  //       });
-  //   }, []);
+    const [data, setData] = useState([]);
+    useEffect(() => {
+      fetch(`https://api.github.com/users/${userName}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setData(data);
+        });
+    }, []);
 
   return (
     <div className="m-10 p-5 bg-sky-200 flex flex-col">
@@ -52,7 +52,7 @@ export default function Github() {
 }
 
 //use this three line codes or above commented code
-export const GithubDataInfo = async () => {
-  const Response = await fetch(`https://api.github.com/users/CodeWithShivesh`);
-  return Response.json();
-};
+// export const GithubDataInfo = async () => {
+//   const Response = await fetch(`https://api.github.com/users/CodeWithShivesh`);
+//   return Response.json();
+// };
