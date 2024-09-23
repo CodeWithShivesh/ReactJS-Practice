@@ -11,7 +11,7 @@ function TodoInput() {
     if (!task) return;
 
     addTask({ task, check: false });
-    // setTask(" ");
+    setTask("");
   };
 
   return (
