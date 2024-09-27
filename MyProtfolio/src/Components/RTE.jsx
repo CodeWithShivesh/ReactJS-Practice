@@ -14,7 +14,7 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
             init={{
               initialValue: defaultValue,
               height: 500,
-              menubar: false,
+              menubar: true,
               plugins: [
                 "image",
                 "advlist",
@@ -43,7 +43,7 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
             onEditorChange={onChange}
-          />;
+          />
         }}
       />
     </div>

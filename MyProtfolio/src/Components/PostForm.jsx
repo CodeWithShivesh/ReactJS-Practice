@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 import { useCallback, useEffect } from "react";
+import { Button, Input, RTE, Select } from "./index";
 
 const PostForm = ({ post }) => {
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -16,11 +17,13 @@ const PostForm = ({ post }) => {
     });
 
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.user.userData);
+  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (data) {
-      data.image[0] ? appwriteService.uploadFile(data.image[0]) : null;
+      const file = data.image[0]
+        ? await appwriteService.uploadFile(data.image[0])
+        : null;
 
       if (file) {
         appwriteService.deleteFile(post.featuredImage);
@@ -30,7 +33,7 @@ const PostForm = ({ post }) => {
         featuredImage: file ? file.$id : undefined,
       });
       if (dbPost) {
-        navigate(`/post/${post.$id}`);
+        navigate(`/post/${dbPost.$id}`);
       }
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
@@ -54,24 +57,21 @@ const PostForm = ({ post }) => {
       return value
         .trim()
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-")
+        .replace(/[^a-zA-Z\d\s]+/g, "-")
         .replace(/\s/g, "-");
 
     return "";
   }, []);
 
   useEffect(() => {
-    const subcription = watch((value, { name }) => {
+    const subscription = watch((value, { name }) => {
       if (name === "title") {
-        setValue(
-          "slug",
-          slugTransform(value.title, {
-            shouldValidate: true,
-          })
-        );
+        setValue("slug", slugTransform(value.title), {
+          shouldValidate: true,
+        });
       }
     });
-    return () => subcription.unsubscribe();
+    return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
   return (
