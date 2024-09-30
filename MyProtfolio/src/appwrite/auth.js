@@ -2,7 +2,7 @@ import {Client, Account, ID } from "appwrite";
 import conf from "../conf.js";
 
 export class AuthService{
-    client = new Client()
+    client = new Client();
     account;
 
     constructor(){

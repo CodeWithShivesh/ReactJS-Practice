@@ -37,6 +37,7 @@ export class Service {
             return await this.databses.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwritecollectionId,
+                slug,
                 {
                     title,
                     content,
@@ -70,7 +71,6 @@ export class Service {
                 conf.appwritecollectionId,
                 slug
             )
-            return true;
         } catch (error) {
             console.log("Appwrite service :: getPost :: error", error);
             return false;
@@ -86,6 +86,7 @@ export class Service {
             )
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error", error);
+            return false;
         }
     }
 
@@ -108,7 +109,7 @@ export class Service {
     async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(conf.appwriteBucketId, fileId)
-            return true;
+            return true
         } 
         catch (error) {
             console.log("Appwrite service :: deleteFile :: error", error);

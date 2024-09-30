@@ -6,6 +6,7 @@ import { useCallback, useEffect } from "react";
 import { Button, Input, RTE, Select } from "./index";
 
 const PostForm = ({ post }) => {
+  console.log(`post : ${post}`);
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -18,14 +19,19 @@ const PostForm = ({ post }) => {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  console.log(userData.$id);
 
   const submit = async (data) => {
-    if (data) {
+    if (post) {
+      console.log("data received");
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
         : null;
+      // console.log(data);
+      // console.log(`post: ${post}`);
 
       if (file) {
+        console.log("file deleted successfully");
         appwriteService.deleteFile(post.featuredImage);
       }
       const dbPost = await appwriteService.updatePost(post.$id, {
@@ -33,6 +39,7 @@ const PostForm = ({ post }) => {
         featuredImage: file ? file.$id : undefined,
       });
       if (dbPost) {
+        console.log("yes we have db post");
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
@@ -40,11 +47,15 @@ const PostForm = ({ post }) => {
 
       if (file) {
         const fileID = file.$id;
+        console.log("fileID: " + fileID);
         data.featuredImage = fileID;
         const dbPost = await appwriteService.createPost({
           ...data,
-          userId: userData.$id,
+          userId:userData.$id,
         });
+        // console.log(`userData: ${userData}`);
+        // console.log(`userId: ${userData.$id}`);
+        // console.log(`post created: ${dbPost}`);
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
@@ -107,7 +118,7 @@ const PostForm = ({ post }) => {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          {...register("image")}
         />
         {post && (
           <div className="w-full mb-4">

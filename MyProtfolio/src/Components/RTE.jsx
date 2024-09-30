@@ -1,5 +1,6 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
+import conf from "../conf";
 
 const RTE = ({ name, control, label, defaultValue = "" }) => {
   return (
@@ -8,11 +9,12 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
       <Controller
         name={name || "Content"}
         control={control}
-        render={({ field: { onChange } }) => {
+        render={({ field: { onChange } }) => (
           <Editor
             initialValue={defaultValue}
+            apiKey={conf.tinyAPIKey}
             init={{
-              initialValue: defaultValue,
+              // apiKey:
               height: 500,
               menubar: true,
               plugins: [
@@ -30,21 +32,19 @@ const RTE = ({ name, control, label, defaultValue = "" }) => {
                 "code",
                 "fullscreen",
                 "insertdatetime",
-                "media", 
+                "media",
                 "table",
-                "code",
                 "help",
                 "wordcount",
-                "anchor",
               ],
               toolbar:
-                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
             onEditorChange={onChange}
           />
-        }}
+        )}
       />
     </div>
   );
