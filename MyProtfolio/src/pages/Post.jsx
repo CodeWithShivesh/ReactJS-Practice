@@ -35,6 +35,7 @@ export default function Post() {
     <div className="py-8">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+          {console.log(post.featuredImage)}
           <img
             src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
@@ -57,7 +58,7 @@ export default function Post() {
         <div className="w-full mb-6">
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
-        <div className="browser-css">{(post.content)}</div>
+        <div className="browser-css">{post.content}</div>
       </Container>
     </div>
   ) : null;
